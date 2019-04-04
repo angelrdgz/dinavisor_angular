@@ -6,13 +6,27 @@ footer{
 	background: linear-gradient(to left, #4286f4, #373B44);
 	padding-top: 80px;
 	position: relative;
-	font-family: 'Lato', sans-serif;
 
-	p.copyright{
-		color: #8d949e;
-		position: absolute;
-		bottom: 20px;
+	.container{
+		width:80%;
+		height: 100%;
+		font-family: 'Lato', sans-serif;
 		text-align: center;
-		width: 100%;
+
+		i{
+			color: #fff;
+			display: block;
+		}
+		span{
+			color: #fff;
+		}
+
+		p.copyright{
+			color: #8d949e;
+			position: absolute;
+			bottom: 20px;
+			text-align: center;
+			width: 100%;
+		}
 	}
 }
