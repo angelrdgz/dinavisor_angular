@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
 	ngOnInit() {
 
-		this.http.get("http://beta.dinavisor.com/api/get-clients").subscribe(
+		this.http.get("https://beta.dinavisor.com/api/get-clients").subscribe(
         (val) => {
         	console.log(val)
         	this.slides = val;
@@ -96,7 +96,7 @@ export class HomeComponent implements OnInit {
 
 	sendEmail(){
 		console.log(this.contact)
-		this.http.post("http://beta.dinavisor.com/api/test-email", this.contact).subscribe(
+		this.http.post("https://beta.dinavisor.com/api/test-email", this.contact).subscribe(
         (val) => {
         	console.log(val)
         	this.openSnackBar('Email enviadó con éxito', 'OK');     	
