@@ -105,7 +105,7 @@
 		[config]="slideConfig"
 		(breakpoint)="breakpoint($event)">
 		<div ngxSlickItem *ngFor="let slide of slides" class="slide">
-			<img src="{{ slide.logo }}" alt="" title="Fanta" class="carousel-image" height="130px" style="display: block; margin: 0 auto;">
+			<img src="{{ slide.logo }}" alt="" title="{{slide.nombre}}" class="carousel-image" height="130px" style="display: block; margin: 0 auto;">
 		</div>
 	</ngx-slick-carousel>
 </div>
