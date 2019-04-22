@@ -1,7 +1,9 @@
 nav{
 	width: 100%;
 	height: 60px;
-	background: transparent;
+	background: #373B44;
+	background: -webkit-linear-gradient(to left, #4286f4, #373B44);
+	background: linear-gradient(to left, #4286f4, #373B44);
 	position: fixed;
 	top: 0;
 	z-index: 100;

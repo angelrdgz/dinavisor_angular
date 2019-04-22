@@ -6,7 +6,7 @@
 	      	<h3>Ten acceso a la información de ventas de tu establecimiento en todo momento y cualquier lugar desde tu smartphone.</h3>
 	      </div>
 	      <div fxFlex="40">	      	
-	      	<img src="https://lymcoin.ancorathemes.com/wp-content/uploads/2018/04/x1.png" alt="">
+	      	<img src="assets/images/sample_app.png" alt="">
 	      </div>          
 	    </div>
 	</div>
@@ -35,7 +35,7 @@
 		<h1>Beneficios Dinavisor</h1>
 		<div class="content" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center">        
 			<div fxFlex="20">
-				<div class="box">
+				<div class="box" ngsReveal>
 					<i class="material-icons">place</i>
 					<h3 class="name">Multisucursal</h3>
 					<p class="description">Monitorea todas tus sucursales juntas o por separado.</p>
@@ -81,20 +81,34 @@
 	      </div>
 	      <div fxFlex="20">
 	      	<div class="box">
-					<i class="material-icons">place</i>
-					<h3 class="name">Multisucursal</h3>
-					<p class="description">Monitorea todas tus sucursales juntas o por separado.</p>
+					<i class="material-icons">settings</i>
+					<h3 class="name">Configuración</h3>
+					<p class="description">Configura los tipos de notificacion que deseas recibir.</p>
 				</div>
 	      </div>  
 	      <div fxFlex="20">
 	      	<div class="box">
-					<i class="material-icons">place</i>
-					<h3 class="name">Multisucursal</h3>
-					<p class="description">Monitorea todas tus sucursales juntas o por separado.</p>
+					<i class="material-icons">bar_chart</i>
+					<h3 class="name">Reportes</h3>
+					<p class="description">Obten reportes diarios, semanales o mensuales.</p>
 				</div>
 	      </div>          
 	    </div>
 	</div>
+</div>
+
+<div class="home-clients">
+	<div class="container">
+		<h1>Nuestros Clientes</h1>		        
+		<ngx-slick-carousel class="carousel" 
+		#slickModal="slick-carousel" 
+		[config]="slideConfig"
+		(breakpoint)="breakpoint($event)">
+		<div ngxSlickItem *ngFor="let slide of slides" class="slide">
+			<img src="{{ slide.logo }}" alt="" title="Fanta" class="carousel-image" height="130px" style="display: block; margin: 0 auto;">
+		</div>
+	</ngx-slick-carousel>
+</div>
 </div>
 
 <div class="home-contact">
@@ -103,14 +117,29 @@
 		<div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill >
 		  <div fxFlex="25"></div>          
 	      <div fxFlex="50" fxFlex.xs="40">
-	      	<input type="text" placeholder="Nombre Completo">
-	      	<input type="email" placeholder="Email">
-	      	<input type="text" placeholder="Teléfono">
-	      	<textarea name="" placeholder="Escribenos tus comentarios" id="" cols="30" rows="4"></textarea>
+	      	<input type="text" [(ngModel)]="contact.name" placeholder="Nombre Completo">
+	      	<input type="email" [(ngModel)]="contact.email" placeholder="Email">
+	      	<input type="text" [(ngModel)]="contact.phone" placeholder="Teléfono">
+	      	<textarea name="" [(ngModel)]="contact.comment" placeholder="Escribenos tus comentarios" id="" cols="30" rows="4"></textarea>
 	      	<br><br>
 	      	<p>
-	      		<a href="">Enviar</a>
-	      	</p>	      	
+	      		<a (click)="sendEmail();">Enviar</a>
+	      	</p>
+	      	<br>
+	      	<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center">
+					<div fxFlex="33">
+						<i class="material-icons">mail_outline</i>
+						<span>contacto@dinavisor.com</span>
+					</div> 
+					<div fxFlex="33">
+						<i class="material-icons">phone</i>
+						<span>(312)207 5764</span>
+					</div> 
+					<div fxFlex="33">
+						<i class="material-icons">phone</i>
+						<span>(312)318 2118</span>
+					</div> 
+				</div>	      	
 	      </div>
 	      <div fxFlex="25"></div>      
 	    </div>
