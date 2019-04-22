@@ -117,14 +117,18 @@
 		<div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill >
 		  <div fxFlex="25"></div>          
 	      <div fxFlex="50" fxFlex.xs="40">
-	      	<input type="text" [(ngModel)]="contact.name" placeholder="Nombre Completo">
-	      	<input type="email" [(ngModel)]="contact.email" placeholder="Email">
-	      	<input type="text" [(ngModel)]="contact.phone" placeholder="Teléfono">
-	      	<textarea name="" [(ngModel)]="contact.comment" placeholder="Escribenos tus comentarios" id="" cols="30" rows="4"></textarea>
+	      	<form [formGroup]="angForm" novalidate>
+	      	<input type="text" formControlName="name" [(ngModel)]="contact.name" placeholder="Nombre Completo">
+	      	<input type="email" formControlName="email" [(ngModel)]="contact.email" placeholder="Email">
+	      	<input type="text" formControlName="phone" [(ngModel)]="contact.phone" placeholder="Teléfono">
+	      	<textarea name="" formControlName="comment" [(ngModel)]="contact.comment" placeholder="Escribenos tus comentarios" id="" cols="30" rows="4"></textarea>
 	      	<br><br>
 	      	<p>
-	      		<a (click)="sendEmail();">Enviar</a>
+	      		<button mat-raised-button (click)="sendEmail();" [disabled]="!angForm.valid">
+	      	     Enviar
+	      	    </button>
 	      	</p>
+	      	</form>
 	      	<br>
 	      	<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center">
 					<div fxFlex="33">

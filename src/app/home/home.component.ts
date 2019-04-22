@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
 
 @Component({
@@ -12,13 +13,15 @@ import {MatSnackBar} from '@angular/material';
 export class HomeComponent implements OnInit {
 
 	public slides:any;
+	angForm: FormGroup;
 	public data:boolean = false;
 	public contact:any = {name:'', last:'', phone:'', comment:''};
 	durationInSeconds = 5;
 
 	constructor(
 		private http: HttpClient,
-		private snackBar: MatSnackBar
+		private snackBar: MatSnackBar,
+		private fb: FormBuilder
 	) { }
 
 	ngOnInit() {
@@ -36,7 +39,27 @@ export class HomeComponent implements OnInit {
         () => {
             console.log("The PATCH observable is now completed.");
         });
+
+        this.createForm();
 	}
+
+	get f() { return this.angForm.controls; }
+
+		createForm() {
+		    this.angForm = this.fb.group({
+		       name: new FormControl('', Validators.required),
+			   email: new FormControl('', Validators.compose([
+				   Validators.required,
+				   Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+			   ])),
+		       phone: new FormControl('', Validators.compose([
+		       	   Validators.minLength(10),
+	 	          Validators.required,
+	 	          Validators.pattern('^(?=.*[0-9])[0-9]+$')
+			   ])),//['', Validators.required ],
+		       comment: ['', Validators.required ]
+		    });
+		  }
 
 	openSnackBar(message: string, action: string) {
 	    this.snackBar.open(message, action, {
@@ -96,6 +119,10 @@ export class HomeComponent implements OnInit {
 
 	sendEmail(){
 		console.log(this.contact)
+		if (this.angForm.invalid) {
+            return;
+        }
+
 		this.http.post("https://beta.dinavisor.com/api/test-email", this.contact).subscribe(
         (val) => {
         	console.log(val)
@@ -108,6 +135,7 @@ export class HomeComponent implements OnInit {
         () => {
             console.log("The PATCH observable is now completed.");
             this.openSnackBar('Email enviadó con éxito', 'OK');
+            this.contact = {name:'', last:'', phone:'', comment:''};
         });
 	}
 
